@@ -69,6 +69,20 @@ public class StudentDAO {
             ps.executeUpdate();
         }
     }
+    public void countStudentsBranchWise() throws SQLException {
+    String sql = "SELECT dept, COUNT(*) AS total FROM Student GROUP BY dept";
+
+    try (Connection conn = getConnection();
+         Statement stmt = conn.createStatement();
+         ResultSet rs = stmt.executeQuery(sql)) {
+
+        while (rs.next()) {
+            String dept = rs.getString("dept");
+            int count = rs.getInt("total");
+            System.out.println(dept + " : " + count);
+        }
+    }
+}
 
     public List<Student> selectAll() throws SQLException {
         String sql = "SELECT * FROM Student";

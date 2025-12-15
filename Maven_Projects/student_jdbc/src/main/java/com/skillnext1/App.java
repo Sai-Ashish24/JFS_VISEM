@@ -14,7 +14,8 @@ public class App {
             System.out.println("2. View Students");
             System.out.println("3. Delete Student");
             System.out.println("4. Update Student");
-            System.out.println("5. Exit");
+            System.out.println("5. count Students branch wise");
+            System.out.println("6. Exit");
             System.out.print("Enter your choice: ");
 
             int choice;
@@ -109,7 +110,7 @@ public class App {
                         System.out.print("Enter new dept: ");
                         String dept = sc.nextLine().trim();
 
-                        Student stu = new Student(0, name, sem, dept); 
+                        Student stu = new Student(id, name, sem, dept); 
                         sd.update(stu); 
                         System.out.println("Student updated successfully");
                     } catch (Exception e) {
@@ -119,7 +120,17 @@ public class App {
                     break;
                 }
 
-                case 5: {
+               case 5: {
+                try {
+                    System.out.println("Count of students branch wise:");
+                    sd.countStudentsBranchWise();
+                } catch (Exception e) {
+                    System.out.println("Error counting students: " + e.getMessage());
+                    e.printStackTrace();
+               }
+            break;
+    }
+                case 6: {
                     System.out.println("Exiting. Bye!");
                     sc.close();
                     return;
